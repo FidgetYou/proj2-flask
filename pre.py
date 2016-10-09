@@ -10,7 +10,7 @@ def process(raw):
     Line by line processing of syllabus file.  Each line that needs
     processing is preceded by 'head: ' for some string 'head'.  Lines
     may be continued if they don't contain ':'.  If # is the first
-    non-blank character on a line, it is a comment ad skipped. 
+    non-blank character on a line, it is a comment and skipped. 
     """
     field = None
     entry = { }
@@ -33,6 +33,8 @@ def process(raw):
         if field == "begin":
             try:
                 base = arrow.get(content, "MM/DD/YYYY")
+                schdDate = base
+                schdDateWeek = base
                 # print("Base date {}".format(base.isoformat()))
             except:
                 raise ValueError("Unable to parse date {}".format(content))
@@ -43,7 +45,19 @@ def process(raw):
                 entry = { }
             entry['topic'] = ""
             entry['project'] = ""
-            entry['week'] = content
+           
+            
+            schdDateWeek = schdDateWeek.replace(weeks =+ 1)
+            entry['week'] = "" + content + "\n" + schdDate.format('MM/DD')
+
+            nowDate = arrow.now()  #Today's date
+            
+            if (nowDate.date() >= schdDate.date()) and (nowDate.date() < schdDateWeek.date()):
+                entry['date'] = True #If it is this week, Highlight
+            else:
+                entry['date'] = False #If it is not this week, don't Highlight
+
+            schdDate = schdDate.replace(weeks =+ 1) #Add a week before iterating through again.
 
         elif field == 'topic' or field == 'project':
             entry[field] = content

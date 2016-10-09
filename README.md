@@ -1,57 +1,23 @@
-# proj2-flask
-A starter project for using the Flask framework
+# CIS 322 proj2-flask
+Editor:	Ryan Collier, RCollier@UOregon.edu
 
-Remember to remove these instructions and replace them with the 
-an appropriate README. 
+This program hosts a Syllabus web site. 
+Given the Syllabus text (in the proper format) this program shows the
+week of the term, the starting day of the term and the week's description.
 
+Specifics:
+This webserver application creates an HTML file based on the file schedule.txt
+stored in the local data directory. It then automatically transmits the HTML to
+any computer requesting said file.
+Syllabus HTML starts on "begin" given by schedule.txt and shows the week, 
+starting day and month, and the weeks descriptions. The current week 
+(if it falls within the given schedule) will be highlighed with a blue/
+green background.
 
-## Basic task
-
-* Fork on github (or bitbucket)
-* Clone in your workspace and on ix
-* Enhance the class schedule display
-  * The starting date of each week should display
-  * The current week (just the column with the week number, or the
-    whole row if you prefer) should be highlighted in some way. 
-
-## In your workspace
-
-'bash ./configure' should create appropriate configuration files on
-most Unix files.   If you are using Windows, some additional editing
-of configuration files may be necessary.  You might have to edit the
-Makefile to find the right version of 
-pyvenv.
-
-If you can run flask applications in your development environment, the
-application would might be run by
-`   python3 syllabus.py`
-and then reached with url
-`   http://localhost:5000`
-
-`make run` will launch the debugging server built into flask.  It
-provides the best support for tracking down bugs in your server, but
-it's not suitable for use by many users or over a long period.  `make
-service` starts a Green Unicorn (gunicorn) server; you may note the extra
-lime sparkles all around you.  Green Unicorn can be used for servers
-that run over a longer period (e.g., if you want to leave a web
-service running on your Pi).   
-
-## On ix.cs.uoregon.edu
-
-You may optionally use ix for testing.  This could be of most use to
-Windows users;  for MacOS users, there is very little advantage of
-testing on ix over testing on MacOS.
-
-## On your Pi
-
-It is important to test your service on your Pi.  You should be able
-to write a simple shell script that installs the latest version of
-your system (by cloning your repository from github), configures it,
-and launches a server for testing.   If you are not familiar enough
-with Unix and with bash shell scripting to do that, work with
-classmates to develop the scripts you need.  I'll contribute to that
-effort, but I prefer to be part of a collaborative effort rather than
-just developing the scripts myself and giving them to you.  (I'll
-defintely have my own for installing and testing your projects.) 
-
+Running:
+This program should run on a Raspberry Pi 3 with the Jessie version of Raspbian
+running on it. But may also require installing Flask, Gunicorn, Arrow, Jinja2,
+and Python.
+The 'make run' command makes it run. But you may have to execute 
+'make configure' first. 
 
